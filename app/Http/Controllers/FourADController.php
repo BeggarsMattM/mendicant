@@ -9,6 +9,7 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 use App\Artist;
 use View;
+use GeoIP;
 
 class FourADController extends BaseController
 {

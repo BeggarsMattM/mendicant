@@ -8,7 +8,7 @@
     @if (isset($uri))
     <meta http-equiv="refresh" content="0;URL='{{ $uri }}'" />
     @endif
-    <link rel="stylesheet" type="text/css" href="css/all.css" />
+    <link rel="stylesheet" type="text/css" href="{{ asset("css/all.css") }}" />
     <meta name="keywords" content="4AD, music, Pixies, Ariel Pink, Atlas Sound, bEEdEEgEE, Bon Iver, Camera Obscura, D.D Dumbo, Daughter, Deerhunter, Efterklang, Future Islands, Gang Gang Dance, Grimes, Holly Herndon, inc., Indians, Iron And Wine, Merchandise, Purity Ring, Scott Walker, Scott Walker + Sunn O))), SOHN, The National, Tune-Yards, U.S. Girls, Zomby,  " />
     <meta name="description" content="The official website for independent record label 4AD." />
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />

@@ -14,7 +14,21 @@ class ArtistsController extends FourADController
       return view('artists.index', compact('current_artists', 'alpha_artists'));
     }
 
-    public function show($id) {
+    public function showSlug($id) {
+      $artist = Artist::where('slug', $id)->first();
+      if (! $artist) abort(404);
 
+      return $this->show($artist->id);
+    }
+
+    public function show($id) {
+      if (! is_numeric($id)) return $this->showSlug($id);
+
+      $artist = Artist::viewable()
+        ->withRelationships()
+        ->find($id);
+      if (! $artist) abort(404);
+
+      return view('artists.show', compact('artist'));
     }
 }
