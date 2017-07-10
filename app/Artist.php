@@ -46,6 +46,25 @@ class Artist extends Model
         ->limit(8);
     }
 
+    public function videos() {
+      return $this->hasMany('App\Video')
+        ->where('is_4ad_session', false)
+        ->viewable()
+        ->orderBy('id', 'DESC');
+    }
+
+    public function sessions() {
+      return $this->hasMany('App\Video')
+        ->where('is_4ad_session', true)
+        ->viewable()
+        ->orderBy('id', 'DESC');
+    }
+
+    public function playlists() {
+      return $this->belongsToMany('App\Playlist')
+        ->where('is_live', true);
+    }
+
     public function viewableAlbums()
     {
         return $this->belongsToMany('App\Release')

@@ -8,6 +8,11 @@ class Release extends Model
 {
     protected $dates = ['release_date'];
 
+    public function artist()
+    {
+      return $this->belongsTo('App\Artist');
+    }
+
     public function scopeViewable($query)
     {
       return $query->where('is_live', true)
