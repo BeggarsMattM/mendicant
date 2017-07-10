@@ -6,7 +6,7 @@
 
     <div class="release_container">
 
-        <img src="http://cdn.beggars.com/fourad/site/images/artists/desktop_header/{{ $artist->desktop_header_image_url }}"
+        <img src="{{ $artist->header_src }}"
              alt="{{ $artist->name }} - title" />
 
         <br />
@@ -26,7 +26,7 @@
 
 @include('artists.partials.biog', ['biog' => $artist->biog])
 
-@if ( count($artist->viewableAlbums))
+@if (count($artist->viewableAlbums))
 <div class="fullpage_element" id="release_related">
 
   <h3 class="releases_subheader">Releases</h3>
@@ -42,7 +42,7 @@
 </div><!--fullpage_element-->
 @endif
 
-@if ( count($artist->viewableSingles))
+@if (count($artist->viewableSingles))
 <div class="fullpage_element" id="release_related">
 
     <h2 class="artist_releases_sub">SINGLES & EPS</h2>
@@ -56,7 +56,7 @@
 </div><!--fullpage_element-->
 @endif
 
-@if ( count($artist->viewableComps) )
+@if (count($artist->viewableComps) )
 <div class="fullpage_element" id="release_related">
 
     <h2 class="artist_releases_sub">Compilations</h2>
@@ -81,7 +81,11 @@
 
         @each('news.partials.article', $artist->eightNews, 'article');
 
-        <div class="morenews"><a href="{{ action('NewsController@artist_news', $artist->slug) }}">More News</a></div>
+        <div class="morenews">
+
+          <a href="{{ action('NewsController@artist_news', $artist->slug) }}">More News</a>
+
+        </div>
 
     </ul>
 
@@ -116,7 +120,7 @@
 </div>
 @endif
 
-@if ( count($artist->sessions) )
+@if (count($artist->sessions) )
     <div class="fullpage_element" id="release_related">
 
         <h3 class="releases_subheader">Sessions</h3>
@@ -128,38 +132,25 @@
 
 @if ($artist->show_tour_dates)
 <div class="fullpage_element" id="release_related">
+
     <h3 class="releases_subheader">Tour Dates</h3>
-    <a href="{{ $artist->songkick_link_url }}" class="songkick-widget" data-theme="light" data-background-color="transparent">{{ $artist->name }} Tour Dates</a>
+    <a href="{{ $artist->songkick_link_url }}"
+       class="songkick-widget"
+       data-theme="light"
+       data-background-color="transparent">{{ $artist->name }} Tour Dates</a>
     <script src="//widget.songkick.com/widget.js"></script>
 
 </div><!--fullpage_element-->
 @endif
 
 @if (count($artist->sleevenotes))
-    <div class="fullpage_element" id="artist_foreword">
+<div class="fullpage_element" id="artist_foreword">
 
-        <h3 class="releases_subheader">Foreword</h3>
+    <h3 class="releases_subheader">Foreword</h3>
 
-    @foreach ($artist->sleevenotes as $foreword)
+    @each ('forewords.partials.foreword', $artist->sleevenotes, 'foreword')
 
-            <div class="sleevenotes_item">
-                <a href="{{ $foreword->link }}">
-                    <img src="https://s3-eu-west-1.amazonaws.com/cdn.beggars.com/fourad/site/images/sleevenotes/desktop/{{ $foreword->desktop_image_path }}"
-                         alt="Artist - title"
-                         class="sleevenotes_full" />
-                </a>
-                <div class="sleevenotes_text">
-                    <h2><a href="{{ $foreword->link }}">{{ $foreword->title }}</a></h2>
-
-                    <p>{{ $foreword->author }}</p>
-                    <p><em>{{ $foreword->excerpt }}</em></p>
-                    <p><a href="{{ $foreword->link }}">Read More</a></p>
-                </div>
-            </div>
-
-        @endforeach
-
-    </div>
+</div>
 @endif
 
 </div><!--fullpage_element-->

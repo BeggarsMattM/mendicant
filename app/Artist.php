@@ -29,6 +29,11 @@ class Artist extends Model
       return strtoupper(substr($this->normalized_name, 0, 1));
     }
 
+    public function getHeaderSrcAttribute() {
+      return "http://cdn.beggars.com/fourad/site/images/artists/desktop_header/"
+        . $this->desktop_header_image_url;
+    }
+
     public function sociallinks() {
       return $this->hasMany('App\ArtistSociallink')
         ->orderBy('display_order');
