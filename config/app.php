@@ -167,6 +167,7 @@ return [
          * Package Service Providers...
          */
         Torann\GeoIP\GeoIPServiceProvider::class,
+        Barryvdh\Debugbar\ServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -227,6 +228,7 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
 
         'GeoIP' => Torann\GeoIP\Facades\GeoIP::class,
+        'Debugbar' => Barryvdh\Debugbar\Facade::class,
 
     ],
 

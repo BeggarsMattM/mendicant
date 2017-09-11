@@ -70,16 +70,14 @@ class Artist extends Model
         ->where('is_live', true);
     }
 
-    public function viewableAlbums()
-    {
+    public function viewableAlbums() {
         return $this->belongsToMany('App\Release')
             ->where('release_type', 'album')
             ->orderBy('release_date', 'desc')
             ->viewable();
     }
 
-    public function viewableSingles()
-    {
+    public function viewableSingles() {
         return $this->belongsToMany('App\Release')
             ->where('release_type', 'single')
             ->orWhere('release_type', 'ep')
@@ -87,16 +85,14 @@ class Artist extends Model
             ->viewable();
     }
 
-    public function viewableComps()
-    {
+    public function viewableComps() {
         return $this->belongsToMany('App\Release')
             ->where('release_type', 'comp')
             ->orderBy('release_date', 'desc')
             ->viewable();
     }
 
-    public function sleevenotes()
-    {
+    public function sleevenotes() {
       return $this->belongsToMany('App\Sleevenote')
         ->orderBy('id', 'desc');
     }

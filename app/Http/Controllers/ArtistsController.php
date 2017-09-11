@@ -9,26 +9,26 @@ use App\Artist;
 class ArtistsController extends FourADController
 {
     public function index() {
-      $current_artists = Artist::current()->get();
+
+      $current_artists = Artist::current()->orderBy('name')->get();
       $alpha_artists   = Artist::getAlphaArtists();
+
       return view('artists.index', compact('current_artists', 'alpha_artists'));
-    }
 
-    public function showSlug($id) {
-      $artist = Artist::where('slug', $id)->first();
-      if (! $artist) abort(404);
-
-      return $this->show($artist->id);
     }
 
     public function show($id) {
-      if (! is_numeric($id)) return $this->showSlug($id);
 
       $artist = Artist::viewable()
-        ->withRelationships()
-        ->find($id);
-      if (! $artist) abort(404);
+        ->withRelationships();
+
+      $artist = is_numeric($id)
+        ? $artist->find($id)
+        : $artist->whereSlug($id)->first();
+
+      if (! $artist ) abort(404);
 
       return view('artists.show', compact('artist'));
+
     }
 }

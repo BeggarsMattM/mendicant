@@ -11,17 +11,11 @@
 |
 */
 
+switch (env('LABEL_NAME')) {
+  case '4AD':
+    include('4ad.php');
+}
+
 Route::get('/', function () {
     return view('welcome');
 });
-
-Route::resource('artists', 'ArtistsController');
-
-Route::resource('news', 'NewsController');
-Route::get('news_redirect', 'NewsController@news_redirect');
-Route::get('artist_news', 'NewsController@artist_news');
-
-Route::resource('releases', 'ReleasesController');
-Route::get('releases/available', 'ReleasesController@available');
-
-Route::get('search_results', 'SearchController@index');

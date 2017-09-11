@@ -1,7 +1,6 @@
 @extends('layout')
 
 @section('content')
-
 <div id="fullpagefeature">
 
     <div class="release_container">
@@ -35,7 +34,9 @@
 
     <ul id="artist_grid">
 
-      @each('artists.partials.release', $artist->viewableAlbums, 'release')
+      @foreach($artist->viewableAlbums as $release)
+        @include('artists.partials.release', ['release' => $release])
+      @endforeach
 
     </ul>
 
@@ -49,7 +50,9 @@
 
     <ul id="artist_grid">
 
-      @each('artists.partials.release', $artist->viewableSingles, 'release')
+      @foreach($artist->viewableSingles as $release)
+        @include('artists.partials.release', ['release' => $release])
+      @endforeach
 
     </ul>
 
@@ -63,7 +66,9 @@
 
     <ul id="artist_grid">
 
-      @each('artists.partials.release', $artist->viewableComps, 'release')
+      @foreach($artist->viewableComps as $release)
+        @include('artists.partials.release', ['release' => $release])
+      @endforeach
 
     </ul>
 
@@ -79,7 +84,9 @@
 
     <ul id="artist_headlines">
 
-        @each('news.partials.article', $artist->eightNews, 'article');
+        @foreach($artist->eightNews as $article)
+          @include('news.partials.article', ['article' => $article])
+        @endforeach
 
         <div class="morenews">
 
@@ -154,7 +161,4 @@
 @endif
 
 </div><!--fullpage_element-->
-@stop
-
-@section('additional-scripts')
 @endsection

@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Video extends Model
 {
+    protected $with = ['artist'];
+
     public function artist() {
       return $this->belongsTo('App\Artist');
     }
