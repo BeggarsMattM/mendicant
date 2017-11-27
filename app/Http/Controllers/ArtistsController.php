@@ -4,14 +4,22 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use App\Artist;
+use App\Repositories\FourADArtistsRepository as Artists;
+
 
 class ArtistsController extends FourADController
 {
+    private $artists;
+
+    public function __construct(Artists $artists) {
+      parent::__construct();
+      $this->artists = $artists;
+    }
+
     public function index() {
 
-      $current_artists = Artist::current()->orderBy('name')->get();
-      $alpha_artists   = Artist::getAlphaArtists();
+      $current_artists = $this->artists->forIndex();
+      $alpha_artists   = $this->artists->alpha();
 
       return view('artists.index', compact('current_artists', 'alpha_artists'));
 

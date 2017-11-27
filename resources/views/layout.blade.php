@@ -40,7 +40,7 @@
                     <ul>
                         @foreach ($artists_for_layout as $artist)
                             <li><a href="{{ action('ArtistsController@show', $artist->id) }}">{{ $artist->name }}</a></li>
-                            @endforeach
+                        @endforeach
                     </ul>
                     <a href="{{ action('ArtistsController@index') }}"><em>All Artists</em></a>
                 </div>
